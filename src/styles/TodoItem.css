@@ -1,0 +1,71 @@
+.todo-item {
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+	flex-direction: column;
+	background: #282e33;
+	padding: 2vmin;
+	border-radius: 1.5vmin;
+	margin-top: 2vmin;
+}
+
+.todo-item-date {
+	opacity: 0.4;
+}
+
+.todo-item-body {
+	margin-top: 0.6rem;
+	display: flex;
+	justify-content: space-between;
+}
+
+.todo-activity {
+	flex: 1;
+	background: none;
+	border: none;
+	outline: none;
+	font-family: manrope;
+	font-size: 2vmin;
+	color: #f2f5f7;
+	word-break: break-all;
+}
+
+.todo-action {
+	align-self: flex-start;
+}
+
+.todo-button {
+	font-size: 2.5vmin;
+	border: none;
+	outline: none;
+	cursor: pointer;
+	margin-left: 0.8rem;
+	width: 5vmin;
+	height: 5vmin;
+	border-radius: 0.9vmin;
+	background: none;
+	transition: 0.1s all ease-in-out;
+}
+
+.todo-button:hover {
+	transform: scale(0.9);
+}
+
+.todo-done {
+	opacity: 0.5;
+}
+
+.todo-done .todo-activity {
+	text-decoration: line-through;
+}
+
+#checkButton {
+	background: #5050e6;
+}
+
+#editButton {
+	background: #e6d750;
+}
+#deleteButton {
+	background: #e65050;
+}
