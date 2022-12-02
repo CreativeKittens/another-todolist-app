@@ -4,19 +4,21 @@
 	justify-content: space-between;
 	flex-direction: column;
 	background: #282e33;
-	padding: 2vmin;
-	border-radius: 1.5vmin;
+	padding: 0.8rem;
+	border-radius: 0.8rem;
 	margin-top: 2vmin;
 }
 
 .todo-item-date {
 	opacity: 0.4;
+	font-size: 0.8rem;
 }
 
 .todo-item-body {
 	margin-top: 0.6rem;
 	display: flex;
 	justify-content: space-between;
+	flex-wrap: wrap;
 }
 
 .todo-activity {
@@ -25,26 +27,28 @@
 	border: none;
 	outline: none;
 	font-family: manrope;
-	font-size: 2vmin;
+	font-size: 1rem;
 	color: #f2f5f7;
 	word-break: break-all;
+	padding: 1rem 0;
 }
 
 .todo-action {
-	align-self: flex-start;
+	display: flex;
+	align-self: flex-end;
 }
 
 .todo-button {
-	font-size: 2.5vmin;
+	font-size: 1rem;
 	border: none;
 	outline: none;
 	cursor: pointer;
-	margin-left: 0.8rem;
-	width: 5vmin;
-	height: 5vmin;
-	border-radius: 0.9vmin;
+	width: 3rem;
+	height: 3rem;
+	border-radius: 0.8rem;
 	background: none;
 	transition: 0.1s all ease-in-out;
+	margin: 0 0.2rem;
 }
 
 .todo-button:hover {

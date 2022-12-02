@@ -1,7 +1,8 @@
 .todo-input {
-	width: 70vw;
+	min-width: 70vw;
 	display: flex;
 	align-items: center;
+	justify-content: space-between;
 	margin-top: 3vmin;
 	margin-bottom: 3vmin;
 	font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
@@ -10,32 +11,32 @@
 
 .input-task {
 	flex: 1;
-	height: 9vmin;
+	height: 4rem;
 	outline: none;
 	border: none;
 	background: #282e33;
-	border-top-left-radius: 1.3vmin;
-	border-bottom-left-radius: 1.3vmin;
+	border-top-left-radius: 0.8rem;
+	border-bottom-left-radius: 0.8rem;
 	padding-left: 1rem;
 	color: #f2f5f7;
-	font-size: 2.3vmin;
+	font-size: 1rem;
 }
 
 .input-button {
-	width: 9vmin;
-	height: 9vmin;
+	width: 4rem;
+	height: 4rem;
 	background: #5050e6;
 	outline: none;
 	border: none;
-	border-top-right-radius: 1.3vmin;
-	border-bottom-right-radius: 1.3vmin;
+	border-top-right-radius: 0.8rem;
+	border-bottom-right-radius: 0.8rem;
 	color: #f2f5f7;
 	cursor: pointer;
 	transition: 0.1s all ease-in-out;
-	font-size: 2.3vmin;
+	font-size: 1rem;
 }
 
 .input-button:hover {
 	background: #4343b4;
-	font-size: 2vmin;
+	font-size: 0.8rem;
 }
