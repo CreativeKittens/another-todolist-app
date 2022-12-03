@@ -5,6 +5,7 @@ import {
 	finishTodo,
 	editTodo,
 } from "../Hooks/useActionTodo"
+import useTheme from "../Hooks/useTheme"
 import TodoAction from "./TodoAction"
 import TodoActivity from "./TodoActivity"
 import TodoButton from "./TodoButton"
@@ -19,12 +20,16 @@ interface ITodoItem extends ItodoItem {
 	editTodo: editTodo
 }
 
-const TodoItems = styled.div`
+interface ITodoItems {
+	background: string
+}
+
+const TodoItems = styled.div<ITodoItems>`
 	width: 100%;
 	display: flex;
 	justify-content: space-between;
 	flex-direction: column;
-	background: #282e33;
+	background: ${({ background }) => background};
 	padding: 0.8rem;
 	border-radius: 0.8rem;
 	margin-top: 2vmin;
@@ -51,14 +56,24 @@ const TodoItem = ({
 }: ITodoItem) => {
 	const todoDate = new Date(date)
 
+	const { color } = useTheme()
+
 	return (
-		<TodoItems className={isDone ? "todo-item todo-done" : ""}>
-			<TodoItemDate>
+		<TodoItems
+			className={isDone ? "todo-item todo-done" : ""}
+			background={color.tertiary}
+		>
+			<TodoItemDate textColor={color.text}>
 				{todoDate.getDate()}/{todoDate.getMonth()}/{todoDate.getFullYear()}
 			</TodoItemDate>
 
 			<TodoItemBody>
-				<TodoActivity value={todo} readOnly className="todo-activity" />
+				<TodoActivity
+					value={todo}
+					readOnly
+					className="todo-activity"
+					textColor={color.text}
+				/>
 
 				<TodoAction>
 					<TodoButton

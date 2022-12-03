@@ -1,5 +1,6 @@
 import React from "react"
 import styled from "styled-components"
+import useTheme from "../Hooks/useTheme"
 import InputButton from "./InputButton"
 import InputTask from "./InputTask"
 
@@ -29,6 +30,8 @@ const InputField = ({
 	saveTodo,
 	clearTodo,
 }: InputFieldProps) => {
+	const { color } = useTheme()
+
 	return (
 		<InputFieldElement>
 			<InputTask
@@ -38,6 +41,8 @@ const InputField = ({
 				placeholder="What do you wanna do today"
 				onChange={todoHandler}
 				value={todo}
+				background={color.tertiary}
+				textColor={color.text}
 			/>
 
 			<InputButton

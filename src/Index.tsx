@@ -9,6 +9,7 @@ import TodoStatus from "./components/TodoStatus"
 
 import { useTodo } from "./Hooks/useTodo"
 import useSaveTodo, { ItodoItem } from "./Hooks/useActionTodo"
+import ThemeProvider from "./components/ThemeProvider"
 
 const Index = () => {
 	const { todo, todoHandler, clearTodo } = useTodo()
@@ -16,47 +17,49 @@ const Index = () => {
 		useSaveTodo()
 
 	return (
-		<App>
-			<Heading>Todoify 💕</Heading>
+		<ThemeProvider>
+			<App>
+				<Heading>Todoify 💕</Heading>
 
-			<SubHeading className="subheading">
-				This is another todolist app from me since i don't have any project or
-				idea 😔
-			</SubHeading>
+				<SubHeading className="subheading">
+					This is another todolist app from me since i don't have any project or
+					idea 😔
+				</SubHeading>
 
-			<InputField
-				todo={todo}
-				todoHandler={todoHandler}
-				saveTodo={saveTodo}
-				clearTodo={clearTodo}
-			/>
+				<InputField
+					todo={todo}
+					todoHandler={todoHandler}
+					saveTodo={saveTodo}
+					clearTodo={clearTodo}
+				/>
 
-			<TodoItemContainer>
-				{savedTodo.length <= 0 ? (
-					<TodoMessage>You don't have anything todo 🥳</TodoMessage>
-				) : (
-					<>
-						<TodoStatus>
-							You have {savedTodo.length} todo activity, cheer up 🍻
-						</TodoStatus>
-						{savedTodo.map((todoSaved: ItodoItem) => {
-							return (
-								<TodoItem
-									key={todoSaved.id}
-									date={todoSaved.date}
-									todo={todoSaved.todo}
-									id={todoSaved.id}
-									isDone={todoSaved.isDone}
-									deleteTodo={deleteTodo}
-									finishTodo={finishTodo}
-									editTodo={editTodo}
-								/>
-							)
-						})}
-					</>
-				)}
-			</TodoItemContainer>
-		</App>
+				<TodoItemContainer>
+					{savedTodo.length <= 0 ? (
+						<TodoMessage>You don't have anything todo 🥳</TodoMessage>
+					) : (
+						<>
+							<TodoStatus>
+								You have {savedTodo.length} todo activity, cheer up 🍻
+							</TodoStatus>
+							{savedTodo.map((todoSaved: ItodoItem) => {
+								return (
+									<TodoItem
+										key={todoSaved.id}
+										date={todoSaved.date}
+										todo={todoSaved.todo}
+										id={todoSaved.id}
+										isDone={todoSaved.isDone}
+										deleteTodo={deleteTodo}
+										finishTodo={finishTodo}
+										editTodo={editTodo}
+									/>
+								)
+							})}
+						</>
+					)}
+				</TodoItemContainer>
+			</App>
+		</ThemeProvider>
 	)
 }
 

@@ -2,11 +2,18 @@ import React from "react"
 import styled from "styled-components"
 import ThemeToggle from "../components/ThemeToggle"
 
-const AppElement = styled.div`
+import useTheme from "../Hooks/useTheme"
+
+interface IAppProps {
+	textColor: string
+	background: string
+}
+
+const AppElement = styled.div<IAppProps>`
 	width: 100vw;
 	min-height: 100vh;
-	background: #1e2226;
-	color: #f2f5f7;
+	background: ${({ background }) => background};
+	color: ${({ textColor }) => textColor};
 
 	display: flex;
 	flex-direction: column;
@@ -15,9 +22,12 @@ const AppElement = styled.div`
 `
 
 const App = ({ children }: { children: React.ReactNode }) => {
+	const { color, setThemeHandler } = useTheme()
+
 	return (
-		<AppElement>
+		<AppElement textColor={color.text} background={color.background}>
 			<ThemeToggle />
+
 			{children}
 		</AppElement>
 	)
