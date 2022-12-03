@@ -1,24 +1,28 @@
-import "./styles/App.css"
-
+import App from "./Page/App"
+import Heading from "./components/Heading"
 import InputField from "./components/InputField"
 import TodoItem from "./components/TodoItem"
+import SubHeading from "./components/SubHeading"
+import TodoItemContainer from "./components/TodoItemContainer"
+import TodoMessage from "./components/TodoMessage"
+import TodoStatus from "./components/TodoStatus"
 
 import { useTodo } from "./Hooks/useTodo"
 import useSaveTodo, { ItodoItem } from "./Hooks/useActionTodo"
 
-const App = () => {
+const Index = () => {
 	const { todo, todoHandler, clearTodo } = useTodo()
 	const { savedTodo, saveTodo, deleteTodo, finishTodo, editTodo } =
 		useSaveTodo()
 
 	return (
-		<div className="App">
-			<h1 className="heading">Todoify 💕</h1>
+		<App>
+			<Heading>Todoify 💕</Heading>
 
-			<h3 className="subheading">
+			<SubHeading className="subheading">
 				This is another todolist app from me since i don't have any project or
 				idea 😔
-			</h3>
+			</SubHeading>
 
 			<InputField
 				todo={todo}
@@ -27,14 +31,14 @@ const App = () => {
 				clearTodo={clearTodo}
 			/>
 
-			<div className="todo-item-container">
+			<TodoItemContainer>
 				{savedTodo.length <= 0 ? (
-					<h1 className="todo-message">You don't have anything todo 🥳</h1>
+					<TodoMessage>You don't have anything todo 🥳</TodoMessage>
 				) : (
 					<>
-						<h1 className="todo-status">
+						<TodoStatus>
 							You have {savedTodo.length} todo activity, cheer up 🍻
-						</h1>
+						</TodoStatus>
 						{savedTodo.map((todoSaved: ItodoItem) => {
 							return (
 								<TodoItem
@@ -51,9 +55,9 @@ const App = () => {
 						})}
 					</>
 				)}
-			</div>
-		</div>
+			</TodoItemContainer>
+		</App>
 	)
 }
 
-export default App
+export default Index

@@ -1,5 +1,8 @@
 import React from "react"
+import styled from "styled-components"
 import "../styles/InputField.css"
+import InputButton from "./InputButton"
+import InputTask from "./InputTask"
 
 export type todoHandler = (e: React.ChangeEvent<HTMLInputElement>) => void
 
@@ -10,6 +13,17 @@ export interface InputFieldProps {
 	clearTodo: () => void
 }
 
+const InputFieldElement = styled.form`
+	min-width: 50vw;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	margin-top: 3vmin;
+	margin-bottom: 3vmin;
+	font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+		Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+`
+
 const InputField = ({
 	todo,
 	todoHandler,
@@ -17,18 +31,17 @@ const InputField = ({
 	clearTodo,
 }: InputFieldProps) => {
 	return (
-		<form className="todo-input">
-			<input
+		<InputFieldElement>
+			<InputTask
 				type="text"
 				name="inputTask"
 				id="inputTask"
-				className="input-task"
 				placeholder="What do you wanna do today"
 				onChange={todoHandler}
 				value={todo}
 			/>
 
-			<button
+			<InputButton
 				className="input-button"
 				id="inputButton"
 				onClick={(e) => {
@@ -38,8 +51,8 @@ const InputField = ({
 				}}
 			>
 				📌
-			</button>
-		</form>
+			</InputButton>
+		</InputFieldElement>
 	)
 }
 
