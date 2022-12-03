@@ -1,6 +1,5 @@
 import React from "react"
 import styled from "styled-components"
-import "../styles/InputField.css"
 import InputButton from "./InputButton"
 import InputTask from "./InputTask"
 

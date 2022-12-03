@@ -1,5 +1,6 @@
 import React from "react"
 import styled from "styled-components"
+import ThemeToggle from "../components/ThemeToggle"
 
 const AppElement = styled.div`
 	width: 100vw;
@@ -14,7 +15,12 @@ const AppElement = styled.div`
 `
 
 const App = ({ children }: { children: React.ReactNode }) => {
-	return <AppElement>{children}</AppElement>
+	return (
+		<AppElement>
+			<ThemeToggle />
+			{children}
+		</AppElement>
+	)
 }
 
 export default App
