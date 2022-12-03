@@ -43,9 +43,13 @@ const useSaveTodo = () => {
 	}
 
 	const deleteTodo: deleteTodo = (id) => {
-		const filteredTodo = savedTodo.filter((todo) => {
-			return todo.id !== id
-		})
+		const filteredTodo = savedTodo
+			.filter((todo) => {
+				return todo.id !== id
+			})
+			.map((todo, index) => {
+				return { ...todo, id: index }
+			})
 
 		setSavedTodo(filteredTodo)
 
