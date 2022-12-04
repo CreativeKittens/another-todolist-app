@@ -5,6 +5,10 @@ const TodoItemBody = styled.div`
 	display: flex;
 	justify-content: space-between;
 	flex-wrap: wrap;
+
+	@media screen and (max-width: 900px) {
+		flex-direction: column;
+	}
 `
 
 export default TodoItemBody

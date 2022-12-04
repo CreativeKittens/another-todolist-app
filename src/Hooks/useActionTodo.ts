@@ -3,7 +3,7 @@ import { useEffect, useState } from "react"
 type saveTodo = (todo: string) => void
 export type deleteTodo = (id: number) => void
 export type finishTodo = (id: number) => void
-export type editTodo = (id: number) => void
+export type editTodo = (id: number, newTodo: string) => void
 
 export interface ItodoItem {
 	id: number
@@ -44,11 +44,11 @@ const useSaveTodo = () => {
 
 	const deleteTodo: deleteTodo = (id) => {
 		const filteredTodo = savedTodo
-			.filter((todo) => {
-				return todo.id !== id
+			.filter((todoItem) => {
+				return todoItem.id !== id
 			})
-			.map((todo, index) => {
-				return { ...todo, id: index }
+			.map((todoItem, index) => {
+				return { ...todoItem, id: index }
 			})
 
 		setSavedTodo(filteredTodo)
@@ -57,22 +57,31 @@ const useSaveTodo = () => {
 	}
 
 	const finishTodo: finishTodo = (id) => {
-		const finishedTodo = savedTodo.map((todo) => {
-			if (todo.id !== id) return todo
+		const finishedTodo = savedTodo.map((todoItem) => {
+			if (todoItem.id !== id) return todoItem
 
-			if (todo.isDone) {
-				return { ...todo, isDone: false }
+			if (todoItem.isDone) {
+				return { ...todoItem, isDone: false }
 			}
 
-			return { ...todo, isDone: true }
+			return { ...todoItem, isDone: true }
 		})
 
 		setSavedTodo(finishedTodo)
 
 		localStorage.setItem("savedTodo", JSON.stringify(finishedTodo))
 	}
-	const editTodo: editTodo = (id) => {
-		console.log(savedTodo)
+	const editTodo: editTodo = (id, newTodo) => {
+		const editedTodo = savedTodo.map((todoItem) => {
+			if (todoItem.id !== id) return todoItem
+
+			todoItem.todo = newTodo
+			return todoItem
+		})
+
+		setSavedTodo(editedTodo)
+
+		localStorage.setItem("savedTodo", JSON.stringify(editedTodo))
 	}
 
 	return { savedTodo, saveTodo, deleteTodo, finishTodo, editTodo }

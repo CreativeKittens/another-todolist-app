@@ -11,6 +11,7 @@ interface IAppProps {
 
 const AppElement = styled.div<IAppProps>`
 	width: 100vw;
+	padding-bottom: 5rem;
 	min-height: 100vh;
 	background: ${({ background }) => background};
 	color: ${({ textColor }) => textColor};

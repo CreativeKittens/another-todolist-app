@@ -4,8 +4,9 @@ interface ITodoActivity {
 	textColor: string
 }
 
-const TodoActivity = styled.input<ITodoActivity>`
+const TodoActivity = styled.textarea<ITodoActivity>`
 	flex: 1;
+	width: 100%;
 	background: none;
 	border: none;
 	outline: none;
@@ -15,5 +16,13 @@ const TodoActivity = styled.input<ITodoActivity>`
 	word-break: break-all;
 	padding: 1rem 0;
 	font-weight: 600;
+	resize: none;
+	margin-right: 3rem;
+
+	@media screen and (max-width: 900px) {
+		flex-direction: column;
+		margin-bottom: 1rem;
+		margin-right: 0;
+	}
 `
 export default TodoActivity

@@ -1,3 +1,4 @@
+import { useEffect, useRef, useState } from "react"
 import styled from "styled-components"
 import {
 	ItodoItem,
@@ -33,6 +34,7 @@ const TodoItems = styled.div<ITodoItems>`
 	padding: 0.8rem;
 	border-radius: 0.8rem;
 	margin-top: 2vmin;
+	flex-wrap: wrap;
 
 	&.todo-done {
 		opacity: 0.5;
@@ -54,9 +56,13 @@ const TodoItem = ({
 	finishTodo,
 	editTodo,
 }: ITodoItem) => {
+	const [isEdit, setEdit] = useState(false)
+
 	const todoDate = new Date(date)
 
 	const { color } = useTheme()
+
+	const todoActivityElement = useRef<HTMLTextAreaElement>(null)
 
 	return (
 		<TodoItems
@@ -69,11 +75,41 @@ const TodoItem = ({
 
 			<TodoItemBody>
 				<TodoActivity
-					value={todo}
-					readOnly
 					className="todo-activity"
+					readOnly={!isEdit}
 					textColor={color.text}
+					defaultValue={todo}
+					ref={todoActivityElement}
+					data-id={id}
+					onChange={({ target }) => {
+						const idTarget = Number.parseFloat(
+							(target as HTMLTextAreaElement).getAttribute("data-id") as string
+						)
+
+						const newTodo = (target as HTMLTextAreaElement).value
+
+						if (!newTodo) return
+
+						editTodo(idTarget, newTodo)
+					}}
+					style={
+						!isEdit
+							? {}
+							: {
+									background: color.background,
+									padding: "1rem",
+									borderRadius: "0.8rem",
+							  }
+					}
 				/>
+
+				{/* <TodoActivity
+					contentEditable
+					textColor={color.text}
+					className="todo-activity"
+				>
+					{todo}
+				</TodoActivity> */}
 
 				<TodoAction>
 					<TodoButton
@@ -90,18 +126,16 @@ const TodoItem = ({
 						☑️
 					</TodoButton>
 					<TodoButton
-						onClick={({ target }) => {
-							const idTarget = Number.parseFloat(
-								(target as HTMLButtonElement).value
-							)
-
-							editTodo(idTarget)
-						}}
 						disabled={isDone}
 						id="editButton"
 						value={id}
+						onClick={() => {
+							setEdit((editStatus) => {
+								return !editStatus
+							})
+						}}
 					>
-						📝
+						{!isEdit ? "✏️" : "📩"}
 					</TodoButton>
 					<TodoButton
 						onClick={({ target }) => {
