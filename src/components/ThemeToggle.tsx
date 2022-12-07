@@ -22,7 +22,6 @@ const ThemeToggleContainer = styled.div<IThemeToggleProps>`
 	height: 3rem;
 	width: 6rem;
 	position: relative;
-	position: relative;
 	z-index: 1;
 	cursor: pointer;
 `
@@ -51,7 +50,7 @@ const ThemeHighlightToggle = styled.span<IThemeHighlightToggle>`
 	border-radius: 1rem;
 	cursor: pointer;
 	transition: all 0.3s ease-out;
-	right: ${({ theme }) => (theme === "dark" ? "0%" : "100")};
+	right: ${({ theme }) => (theme === "dark" ? "0%" : "50%")};
 `
 
 const ThemeToggle = () => {

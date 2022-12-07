@@ -88,7 +88,16 @@ const TodoItem = ({
 
 						const newTodo = (target as HTMLTextAreaElement).value
 
-						if (!newTodo) return
+						if (!newTodo) {
+							target.parentElement
+								?.querySelector("#editButton")
+								?.setAttribute("disabled", "true")
+							return
+						}
+
+						target.parentElement
+							?.querySelector("#editButton")
+							?.removeAttribute("disabled")
 
 						editTodo(idTarget, newTodo)
 					}}
@@ -122,6 +131,7 @@ const TodoItem = ({
 						}}
 						id="checkButton"
 						value={id}
+						disabled={isEdit}
 					>
 						☑️
 					</TodoButton>
@@ -147,6 +157,7 @@ const TodoItem = ({
 						}}
 						id="deleteButton"
 						value={id}
+						disabled={isEdit}
 					>
 						🗑️
 					</TodoButton>
